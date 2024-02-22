@@ -1,0 +1,33 @@
+.App {
+  .form {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  .list{
+
+    table{
+        width: 100%;
+        tbody{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+
+            tr{
+                display: flex;
+                justify-content: space-around;
+
+            }
+        }
+    }
+  }
+}
