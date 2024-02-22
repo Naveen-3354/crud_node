@@ -27,7 +27,7 @@ app.put("/:id",async(req,res)=>{
     result.number = req.body.number
     result.username = req.body.username
     result.dateOfBirth = req.body.dateOfBirth
-    const response= await result.save()
+    await result.save()
     res.send({
         message:"Updated"
     })
