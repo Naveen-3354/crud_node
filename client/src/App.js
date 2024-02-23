@@ -34,6 +34,8 @@ function App() {
     console.log(userdetails);
     axios.put(url+userdetails._id, userdetails).then((res)=>console.log(res))
     getUSerdetails()
+    setuserdetails(initialValue)
+    setUpdate(false)
   }
 
   const handleEdit =(data)=>{
@@ -94,11 +96,13 @@ function App() {
       </div>
       <div className="list">
         <table>
+          
           <tbody>
             <tr>
               <td>Id</td>
               <td>Name</td>
               <td>Email</td>
+              <td>Date of birth</td>
               <td>Password</td>
               <td>Number</td>
               <td>Actions</td>
@@ -109,6 +113,7 @@ function App() {
                 <td>{data._id}</td>
                 <td>{data.username}</td>
                 <td>{data.email}</td>
+                <td>{data.dateOfBirth}</td>
                 <td>{data.password}</td>
                 <td>{data.number}</td>
                 <td>
