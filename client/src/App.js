@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/login";
 import Entry from "./pages/Entry";
 import Home from "./pages/Home";
-import Popup from "./pages/popup";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,8 +21,7 @@ function App() {
   ]);
 
   return <div className="App">
-    {/* <RouterProvider router={router} /> */}
-    <Popup />
+    <RouterProvider router={router} />
     </div>;
 }
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const useCustomHooks = () => {
   const navigate = useNavigate();
   const initialValue = {
@@ -37,7 +38,7 @@ const useCustomHooks = () => {
       .catch((e) => console.log(e));
   };
 
-  const updateuser = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     axios
       .put(url + userdetails._id, userdetails)
@@ -76,8 +77,9 @@ const useCustomHooks = () => {
   return {
     url,
     gender,
-    handleRadio,
+    list,
     userdetails,
+    handleRadio,
     setuserdetails,
     handleChange,
     handleLogin,
@@ -85,8 +87,8 @@ const useCustomHooks = () => {
     handleDelete,
     getUSerdetails,
     setGender,
-    list,
     handleEdit,
+    handleUpdate
   };
 };
 

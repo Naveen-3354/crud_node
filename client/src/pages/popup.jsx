@@ -1,8 +1,7 @@
 import useCustomHooks from "./customHooks";
-import { Link } from "react-router-dom";
 
 const Popup = () => {
-    const { userdetails, gender,setGender, handleRadio, handleChange, handleRegister } =
+    const { userdetails, gender,setGender, handleRadio, handleChange, handleUpdate } =
     useCustomHooks();
   return (
     <div
@@ -14,6 +13,7 @@ const Popup = () => {
         gap: "20px",
         width: "100vw",
         height: "100vh",
+        backgroundColor:"rgba(0, 0, 0, 0.404)"
       }}
     >
       <h2
@@ -21,77 +21,68 @@ const Popup = () => {
           margin: "0px",
         }}
       >
-        Register
+        Update
       </h2>
       <div className="form">
         <form action="">
-          <h1
-            style={{
-              margin: "0px",
-            }}
-          >
-            Create
-          </h1>
           <input
             type="text"
             name="username"
             placeholder="Username"
-            value={userdetails.username}
-            onChange={handleChange}
+            // value={userdetails.username}
+            // onChange={handleChange}
           />
           <input
             type="text"
             name="email"
             placeholder="Email"
-            value={userdetails.email}
-            onChange={handleChange}
+            // value={userdetails.email}
+            // onChange={handleChange}
           />
           <input
             type="text"
             name="number"
-            value={userdetails.number}
             placeholder="Number"
-            onChange={handleChange}
+            // value={userdetails.number}
+            // onChange={handleChange}
           />
           <input
             type="text"
             name="password"
-            value={userdetails.password}
             placeholder="Password"
-            onChange={handleChange}
+            // value={userdetails.password}
+            // onChange={handleChange}
           />
           <input
             type="date"
-            value={userdetails.dateOfBirth}
             name="dateOfBirth"
             placeholder="Password"
-            onChange={handleChange}
+            // value={userdetails.dateOfBirth}
+            // onChange={handleChange}
           />
           <div className="radio">
             <input
               type="radio"
               name="male"
-              onChange={handleRadio}
-              checked={gender.male}
-              onClick={() => setGender(!gender)}
+            //   onChange={handleRadio}
+            //   checked={gender.male}
+            //   onClick={() => setGender(!gender)}
             />
             <span>Male</span>
 
             <input
               type="radio"
               name="female"
-              checked={gender.female}
-              onChange={handleRadio}
-              onClick={() => setGender(!gender)}
+            //   checked={gender.female}
+            //   onChange={handleRadio}
+            //   onClick={() => setGender(!gender)}
             />
             <span>Female</span>
           </div>
-          <button onClick={handleRegister}>Submit</button>
+          <button >update</button>
         </form>
       </div>
-      <Link to="/">
-        <p>/ Login</p>
-      </Link>
+      
     </div>
   );
 };
