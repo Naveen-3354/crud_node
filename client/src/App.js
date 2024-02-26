@@ -3,59 +3,67 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 function App() {
   const initialValue = {
-    username:"",
-    email:"",
-    number:"",
-    password:"",
-    dateOfBirth:""
-  }
+    username: "",
+    email: "",
+    number: "",
+    password: "",
+    dateOfBirth: "",
+  };
   const url = "http://localhost:3001/";
+
   const [list, setlist] = useState([]);
-  const [update, setUpdate] = useState(false)
+  const [update, setUpdate] = useState(false);
 
   const [userdetails, setuserdetails] = useState(initialValue);
+
   useEffect(() => {
-    getUSerdetails()
+    getUSerdetails();
   }, [list]);
 
-  const getUSerdetails = () => {axios.get(url).then((result) => setlist(result.data));};
+  const getUSerdetails = () => {
+    axios.get(url).then((result) => setlist(result.data));
+  };
 
   const handleChange = (e) => {
     setuserdetails({ ...userdetails, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userdetails);
-     axios.post(url, userdetails).then((result)=>console.log(result)).catch(e=>console.log(e));
+    axios
+      .post(url, userdetails)
+      .then((result) => console.log(result))
+      .catch((e) => console.log(e));
   };
-  const updateuser = (e)=>{
-    e.preventDefault()
+
+  const updateuser = (e) => {
+    e.preventDefault();
+    axios
+      .put(url + userdetails._id, userdetails)
+      .then((res) => console.log(res));
+    getUSerdetails();
+    setuserdetails(initialValue);
+    setUpdate(false);
+  };
+
+  const handleEdit = (data) => {
+    setuserdetails(data);
     console.log(userdetails);
-    axios.put(url+userdetails._id, userdetails).then((res)=>console.log(res))
-    getUSerdetails()
-    setuserdetails(initialValue)
-    setUpdate(false)
-  }
+    setUpdate(true);
+  };
 
-  const handleEdit =(data)=>{
-    setuserdetails(data)
-    console.log(userdetails);
-    setUpdate(true)
-  }
-
-  const handleDelete =(id)=>{
-    axios.delete(url+`${id}`).then((res)=>console.log(res))
-    getUSerdetails()
-    setuserdetails(initialValue)
-
-  }
+  const handleDelete = (id) => {
+    axios.delete(url + `${id}`).then((res) => console.log(res));
+    getUSerdetails();
+    setuserdetails(initialValue);
+  };
 
   return (
     <div className="App">
       <div className="form">
         <form action="">
-          <h1>{update ? "Update" : "Create  "}</h1>
+          <h1>{update ? "Update" : "Create"}</h1>
           <input
             type="text"
             name="username"
@@ -91,11 +99,31 @@ function App() {
             placeholder="Password"
             onChange={handleChange}
           />
-          <button onClick={update? updateuser:handleSubmit}>{update? "Update" : "Submit"}</button>
+          <button onClick={update ? updateuser : handleSubmit}>
+            {update ? "Update" : "Submit"}
+          </button>
         </form>
       </div>
       <div className="list">
-        <table>
+        {list.map((data, index) => (
+          <div className="box" key={index}>
+            <p>Username : {data.username}</p>
+            <p>Email : {data.email}</p>
+            <p>Number : {data.number}</p>
+            <p>Username : {data.username}</p>
+            <p>Date of birth : {data.dateOfBirth}</p>
+            <div className="button">
+              <button className="edit" onClick={() => handleEdit(data)}>
+                Edit
+              </button>
+              <button className="delete" onClick={() => handleDelete(data._id)}>
+                delete
+              </button>
+            </div>
+          </div>
+        ))}
+
+        {/* <table>
           
           <tbody>
             <tr>
@@ -108,8 +136,8 @@ function App() {
               <td>Actions</td>
             </tr>
 
-            {list.map((data, x) => (
-              <tr key={x}>
+            {list.map((data, index) => (
+              <tr key={index}>
                 <td>{data._id}</td>
                 <td>{data.username}</td>
                 <td>{data.email}</td>
@@ -125,7 +153,7 @@ function App() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
     </div>
   );

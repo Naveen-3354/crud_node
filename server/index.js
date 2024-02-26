@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require("mongoose")
 const cors = require("cors")
 const Model = require("./model")
+
 mongoose.connect("mongodb://localhost:27017/crud").then(()=>console.log("Database connected..."))
 app.use(cors())
 app.use(express.json())
@@ -21,7 +22,6 @@ app.put("/:id",async(req,res)=>{
     console.log(req.params.id);
 
     let result = await Model.findByIdAndUpdate({_id:req.params.id})
-    console.log(result);
     result.username = req.body.username
     result.email = req.body.email
     result.number = req.body.number
@@ -40,4 +40,5 @@ app.delete("/:id",async (req,res)=>{
         message:"Deleted"
     })
 })
+
 app.listen(3001,()=>console.log("Server listening at 3001..."))

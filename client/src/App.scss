@@ -12,22 +12,38 @@
     }
   }
 
-  .list{
+  .list {
+    padding: 0 100px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
 
-    table{
-        width: 100%;
-        tbody{
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+    .box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
 
-
-            tr{
-                display: flex;
-                justify-content: space-around;
-
-            }
-        }
+      p {
+        margin: 0;
+      }
+      .button {
+        display: flex;
+        gap: 20px;
+      }
     }
+
+    // table{
+    //     width: 100%;
+    //     tbody{
+    //         display: flex;
+    //         flex-direction: column;
+    //         gap: 10px;
+
+    //         tr{
+    //             display: flex;
+    //             justify-content: space-around;
+
+    //         }
+    //     }
+    // }
   }
 }
