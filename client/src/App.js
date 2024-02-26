@@ -8,17 +8,22 @@ function App() {
     number: "",
     password: "",
     dateOfBirth: "",
+    gender: "",
   };
   const url = "http://localhost:3001/";
 
   const [list, setlist] = useState([]);
   const [update, setUpdate] = useState(false);
+  const [gender, setGender] = useState({
+    male: false,
+    female: false,
+  });
 
   const [userdetails, setuserdetails] = useState(initialValue);
 
   useEffect(() => {
     getUSerdetails();
-  }, [list]);
+  },[]);
 
   const getUSerdetails = () => {
     axios.get(url).then((result) => setlist(result.data));
@@ -59,6 +64,16 @@ function App() {
     setuserdetails(initialValue);
   };
 
+  const handleRadio = (e) => {
+    setGender(() => {
+      if (e.target.name === "male") {
+        setuserdetails({ ...userdetails, gender: "male" });
+        return { male: true, female: false };
+      }
+      setuserdetails({ ...userdetails, gender: "female" });
+      return { male: false, female: true };
+    });
+  };
   return (
     <div className="App">
       <div className="form">
@@ -99,6 +114,25 @@ function App() {
             placeholder="Password"
             onChange={handleChange}
           />
+          <div className="radio">
+            <input
+              type="radio"
+              name="male"
+              onChange={handleRadio}
+              checked={gender.male}
+              onClick={() => setGender(!gender)}
+            />
+            <span>Male</span>
+
+            <input
+              type="radio"
+              name="female"
+              checked={gender.female}
+              onChange={handleRadio}
+              onClick={() => setGender(!gender)}
+            />
+            <span>Female</span>
+          </div>
           <button onClick={update ? updateuser : handleSubmit}>
             {update ? "Update" : "Submit"}
           </button>
