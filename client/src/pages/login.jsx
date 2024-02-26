@@ -1,27 +1,57 @@
 import React from "react";
-import customHooks from "./customHooks";
+import useCustomHooks from "./customHooks";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-    const {url,userdetails,setuserdetails,handleChange}= customHooks()
+  const { userdetails, handleLogin, handleChange } =
+    useCustomHooks();
   return (
-    <div>
-      <form action="">
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        gap: "10px",
+      }}
+    >
+      <h2>Login</h2>
+      <form
+        action=""
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+        }}
+      >
         <input
           type="text"
-          name="username"
-          placeholder="Username"
-          value={userdetails.username}
+          name="email"
+          placeholder="Email"
+          value={userdetails.email}
           onChange={handleChange}
         />
         <input
-          type="date"
-          value={userdetails.dateOfBirth}
-          name="dateOfBirth"
+          type="text"
+          name="password"
+          value={userdetails.password}
           placeholder="Password"
           onChange={handleChange}
         />
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleLogin}>Submit</button>
       </form>
+      <div
+        className="div"
+        style={{
+          cursor: "pointer",
+        }}
+      >
+        <Link to="/register">
+          <p>/ Register</p>
+        </Link>
+      </div>
     </div>
   );
 };

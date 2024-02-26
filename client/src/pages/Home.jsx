@@ -1,31 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import useCustomHooks from "./customHooks";
 
 const Home = () => {
-    
-  const [list, setlist] = useState([]);
-
+  const { list, handleDelete, getUSerdetails, handleEdit } =
+    useCustomHooks();
 
   useEffect(() => {
     getUSerdetails();
-  },[]);
+  }, []);
 
-  const getUSerdetails = () => {
-    axios.get(url).then((result) => setlist(result.data));
-  };
-
-  
-
-  const handleEdit = (data) => {
-    setuserdetails(data);
-    console.log(userdetails);
-    setUpdate(true);
-  };
-
-  const handleDelete = (id) => {
-    axios.delete(url + `${id}`).then((res) => console.log(res));
-    getUSerdetails();
-    setuserdetails(initialValue);
-  };
   return (
     <div>
       <div className="list">

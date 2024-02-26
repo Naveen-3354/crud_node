@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require("mongoose")
 const cors = require("cors")
 const Model = require("./model")
+const bcrypt = require("bcrypt")
 
 mongoose.connect("mongodb://localhost:27017/crud").then(()=>console.log("Database connected..."))
 app.use(cors())
@@ -13,9 +14,27 @@ app.get("/", async (req,res)=>{
     res.send(result)
 })
 
-app.post("/",async (req,res)=>{
-    const result = await Model(req.body).save()
-    res.send(result);
+app.post("/login", async(req,res)=>{
+    let result = await Model.findOne({email:req.body.email})
+    if(!result) return res.send({message:"User not found."})
+    result = bcrypt.compare(req.body.password, result.password)
+    res.send(result)
+})
+
+app.post("/register",async (req,res)=>{
+    console.log("req");
+    // const salt = await bcrypt.genSalt(5);
+    const password = await bcrypt.hash(req.body.password, 2)
+    const result = await Model({
+        username:req.body.username,
+        email:req.body.email,
+        number:req.body.number,
+        gender:req.body.gender,
+        dateOfBirth:req.body.dateOfBirth,
+        password : password
+    }).save()
+    console.log(result);
+    return res.send(result);
 })
 
 app.put("/:id",async(req,res)=>{

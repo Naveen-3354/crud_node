@@ -1,10 +1,9 @@
 import useCustomHooks from "./customHooks";
 import { Link } from "react-router-dom";
 
-const Entry = () => {
-  const { userdetails, gender,setGender, handleRadio, handleChange, handleRegister } =
+const Popup = () => {
+    const { userdetails, gender,setGender, handleRadio, handleChange, handleRegister } =
     useCustomHooks();
-
   return (
     <div
       style={{
@@ -22,7 +21,7 @@ const Entry = () => {
           margin: "0px",
         }}
       >
-        Update
+        Register
       </h2>
       <div className="form">
         <form action="">
@@ -87,11 +86,14 @@ const Entry = () => {
             />
             <span>Female</span>
           </div>
-          <button onClick={handleRegister}>Update</button>
+          <button onClick={handleRegister}>Submit</button>
         </form>
       </div>
+      <Link to="/">
+        <p>/ Login</p>
+      </Link>
     </div>
   );
 };
 
-export default Entry;
+export default Popup;
