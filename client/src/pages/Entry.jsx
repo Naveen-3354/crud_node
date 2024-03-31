@@ -1,10 +1,16 @@
-
 import useCustomHooks from "./customHooks";
 import { Link } from "react-router-dom";
+// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Entry = () => {
-  const { userdetails, gender,setGender, handleRadio, handleChange, handleRegister } =
-    useCustomHooks();
+  const {
+    userdetails,
+    gender,
+    setGender,
+    handleRadio,
+    handleChange,
+    handleRegister,
+  } = useCustomHooks();
 
   return (
     <div
@@ -88,6 +94,9 @@ const Entry = () => {
             />
             <span>Female</span>
           </div>
+          {/* <AccountCircleIcon className
+            
+          /> */}
           <button onClick={handleRegister}>Submit</button>
         </form>
       </div>

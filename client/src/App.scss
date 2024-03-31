@@ -19,11 +19,15 @@
     padding: 0 100px;
     display: grid;
     grid-template-columns: auto auto auto auto auto;
+    column-gap: 30px;
 
     .box {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      background-color: rgb(245, 120, 47);
+      padding: 10px;
+      border-radius: 5px;
 
       p {
         margin: 0;
